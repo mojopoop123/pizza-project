@@ -36,7 +36,7 @@ def add_pizza_to_cart(request, pizza_id):
         cart_item.toppings.set(topping_ids)
         cart_item.save()
 
-    return redirect("cart_detail")
+    return redirect("menu")
 
 
 @login_required
@@ -49,7 +49,7 @@ def add_drink_to_cart(request, drink_id):
         quantity=1,
     )
 
-    return redirect("cart_detail")
+    return redirect("menu")
 
 
 @login_required

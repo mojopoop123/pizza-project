@@ -76,6 +76,8 @@
         <a href="/">Home</a>
 
         {% if user.is_authenticated %}
+            <a href="{% url 'menu' %}">Menu</a>
+            <a href="{% url 'cart_detail' %}">Cart</a>
             <a href="/orders/history/">Orders</a>
 
             <form method="post"

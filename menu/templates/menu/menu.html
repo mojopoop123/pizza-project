@@ -8,6 +8,16 @@ Menu - Pizza Paradise
 
 <h1>🍕 Our Menu</h1>
 
+<div class="card" style="margin-bottom: 25px; text-align: center;">
+
+    <h2>Ready to checkout?</h2>
+
+    <a href="{% url 'cart_detail' %}" class="button">
+        🛒 View Cart
+    </a>
+
+</div>
+
 <p>
     Choose from our delicious pizzas and refreshing drinks.
 </p>
@@ -42,7 +52,7 @@ Menu - Pizza Paradise
 
         </select>
 
-        <h3>Choose Toppings</h3>
+        <h3>Choose Extra Toppings</h3>
 
         {% for topping in pizza.available_toppings.all %}
 

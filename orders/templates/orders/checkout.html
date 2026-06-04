@@ -1,29 +1,50 @@
 {% extends "base.html" %}
 
 {% block title %}
-Checkout
+Checkout - Pizza Paradise
 {% endblock %}
 
 {% block content %}
 
-<div class="card">
+<h1>Checkout</h1>
 
-    <h1>Checkout</h1>
+{% for item in cart_items %}
+    <div class="card" style="margin-bottom: 20px;">
+        {% if item.pizza %}
+            <h3>{{ item.quantity }}x {{ item.pizza.name }}</h3>
+            <p>Size: {{ item.size.name }}</p>
 
-    <p>
-        Review your order before confirming.
-    </p>
+            <p>
+                Toppings:
+                {% for topping in item.toppings.all %}
+                    {{ topping.name }}{% if not forloop.last %}, {% endif %}
+                {% empty %}
+                    None
+                {% endfor %}
+            </p>
+        {% else %}
+            <h3>{{ item.quantity }}x {{ item.drink.name }}</h3>
+            <p>Size: {{ item.drink.size }}</p>
+        {% endif %}
+
+        <p>Price: ${{ item.get_total_price }}</p>
+    </div>
+{% empty %}
+    <div class="card">
+        <p>Your cart is empty.</p>
+        <a class="button" href="{% url 'menu' %}">Back to Menu</a>
+    </div>
+{% endfor %}
+
+{% if cart_items %}
+    <h2>Total: ${{ total }}</h2>
 
     <form method="post">
-
         {% csrf_token %}
-
-        <button type="submit">
+        <button type="submit" class="button">
             Confirm Order
         </button>
-
     </form>
-
-</div>
+{% endif %}
 
 {% endblock %}
