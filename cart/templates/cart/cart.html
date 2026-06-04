@@ -1,12 +1,12 @@
 {% extends "base.html" %}
 
 {% block title %}
-Checkout - Pizza Paradise
+Cart - Pizza Paradise
 {% endblock %}
 
 {% block content %}
 
-<h1>Checkout</h1>
+<h1>Your Cart</h1>
 
 {% for item in cart_items %}
     <div class="card" style="margin-bottom: 20px;">
@@ -28,23 +28,21 @@ Checkout - Pizza Paradise
         {% endif %}
 
         <p>Price: ${{ item.get_total_price }}</p>
+
+        <a class="button" href="{% url 'remove_from_cart' item.id %}">
+            Remove
+        </a>
     </div>
 {% empty %}
     <div class="card">
         <p>Your cart is empty.</p>
-        <a class="button" href="{% url 'menu' %}">Back to Menu</a>
     </div>
 {% endfor %}
 
-{% if cart_items %}
-    <h2>Total: ${{ total }}</h2>
+<h2>Total: ${{ total }}</h2>
 
-    <form method="post">
-        {% csrf_token %}
-        <button type="submit" class="button">
-            Confirm Order
-        </button>
-    </form>
-{% endif %}
+<a class="button" href="{% url 'checkout' %}">
+    Checkout
+</a>
 
 {% endblock %}

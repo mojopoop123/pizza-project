@@ -1,0 +1,149 @@
+{% extends "base.html" %}
+
+{% block title %}
+Menu - Pizza Paradise
+{% endblock %}
+
+{% block content %}
+
+<h1>🍕 Our Menu</h1>
+
+<div class="card" style="margin-bottom: 25px; text-align: center;">
+
+    <h2>Ready to checkout?</h2>
+
+    <a href="{% url 'cart_detail' %}" class="button">
+        🛒 View Cart
+    </a>
+
+</div>
+
+<p>
+    Choose from our delicious pizzas and refreshing drinks.
+</p>
+
+<h2>Pizzas</h2>
+
+{% for pizza in pizzas %}
+
+<div class="card" style="margin-bottom: 25px;">
+
+    <h2>{{ pizza.name }}</h2>
+
+    <p>{{ pizza.description }}</p>
+
+    <form method="post" action="{% url 'add_pizza_to_cart' pizza.id %}">
+
+        {% csrf_token %}
+
+        <h3>Select Size</h3>
+
+        <select name="size" required>
+
+            {% for size in sizes %}
+
+                <option value="{{ size.id }}">
+                    {{ size.name }}
+                    - ${{ size.base_price }}
+                    (Extra toppings: ${{ size.topping_price }})
+                </option>
+
+            {% endfor %}
+
+        </select>
+
+        <h3>Choose Extra Toppings</h3>
+
+        {% for topping in pizza.available_toppings.all %}
+
+            <label>
+
+                <input
+                    type="checkbox"
+                    name="toppings"
+                    value="{{ topping.id }}">
+
+                {{ topping.name }}
+
+            </label>
+
+            <br>
+
+        {% empty %}
+
+            <p>No additional toppings available.</p>
+
+        {% endfor %}
+
+        <br>
+
+        <label>
+
+            Quantity:
+
+            <input
+                type="number"
+                name="quantity"
+                value="1"
+                min="1">
+
+        </label>
+
+        <br><br>
+
+        <button type="submit" class="button">
+            Add Pizza To Cart
+        </button>
+
+    </form>
+
+</div>
+
+{% empty %}
+
+<div class="card">
+
+    <h3>No pizzas available.</h3>
+
+</div>
+
+{% endfor %}
+
+<hr>
+
+<h2>🥤 Drinks</h2>
+
+{% for drink in drinks %}
+
+<div class="card" style="margin-bottom: 20px;">
+
+    <h3>{{ drink.name }}</h3>
+
+    <p>Size: {{ drink.size }}</p>
+
+    <p>Price: ${{ drink.price }}</p>
+
+    <form method="post"
+          action="{% url 'add_drink_to_cart' drink.id %}">
+
+        {% csrf_token %}
+
+        <button type="submit" class="button">
+            Add Drink To Cart
+        </button>
+
+    </form>
+
+</div>
+
+{% empty %}
+
+<div class="card">
+
+    <h3>No drinks available.</h3>
+
+</div>
+
+{% endfor %}
+
+{% endblock %}
