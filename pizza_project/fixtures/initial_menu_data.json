@@ -1,0 +1,80 @@
+[
+  {
+    "model": "pizza_project.menu",
+    "pk": 1,
+    "fields": {
+      "title": "Margherita",
+      "description": "Tomato sauce, mozzarella, fresh basil.",
+      "price": 120,
+      "image_url": "https://images.unsplash.com/photo-1604382355076-af4b0eb60143",
+      "allergens": "",
+      "active": true,
+      "type": "PIZZA"
+    }
+  },
+  {
+    "model": "pizza_project.menu",
+    "pk": 2,
+    "fields": {
+      "title": "Pepperoni",
+      "description": "Loaded with spicy pepperoni and mozzarella.",
+      "price": 140,
+      "image_url": "https://images.unsplash.com/photo-1628840042765-356cda07504e",
+      "allergens": "",
+      "active": true,
+      "type": "PIZZA"
+    }
+  },
+  {
+    "model": "pizza_project.menu",
+    "pk": 3,
+    "fields": {
+      "title": "Vegetarian",
+      "description": "Bell peppers, mushrooms, onions and olives.",
+      "price": 130,
+      "image_url": "https://images.unsplash.com/photo-1594007654729-407eedc4be65",
+      "allergens": "",
+      "active": true,
+      "type": "PIZZA"
+    }
+  },
+  {
+    "model": "pizza_project.menu",
+    "pk": 4,
+    "fields": {
+      "title": "Coco-Cola",
+      "description": "",
+      "price": 30,
+      "image_url": "",
+      "allergens": "",
+      "active": true,
+      "type": "DRINK"
+    }
+  },
+  {
+    "model": "pizza_project.menu",
+    "pk": 4,
+    "fields": {
+      "title": "Fanta",
+      "description": "",
+      "price": 30,
+      "image_url": "",
+      "allergens": "",
+      "active": true,
+      "type": "DRINK"
+    }
+  },
+  {
+    "model": "pizza_project.menu",
+    "pk": 4,
+    "fields": {
+      "title": "Sprite",
+      "description": "",
+      "price": 30,
+      "image_url": "",
+      "allergens": "",
+      "active": true,
+      "type": "DRINK"
+    }
+  }
+]
