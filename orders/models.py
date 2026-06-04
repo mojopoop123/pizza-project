@@ -7,6 +7,14 @@ class Order(models.Model):
         ("preparing", "Preparing"),
         ("complete", "Complete"),
     ]
+    delivery_address = models.CharField(
+    max_length=255,
+    blank=True
+)
+
+    delivery_notes = models.TextField(
+    blank=True
+)
 
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
