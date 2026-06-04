@@ -1,167 +1,21 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Pizza Paradise</title>
+{% extends "base.html" %}
 
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f5f5f5;
-        }
+{% block title %}
+Home - Pizza Paradise
+{% endblock %}
 
-        nav {
-            background-color: #b22222;
-            padding: 15px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+{% block content %}
 
-        nav h2 {
-            color: white;
-            margin: 0;
-        }
-
-        nav a {
-            color: white;
-            text-decoration: none;
-            margin-left: 20px;
-            font-weight: bold;
-        }
-
-        .hero {
-            text-align: center;
-            padding: 100px 20px;
-            background-color: white;
-        }
-
-        .hero h1 {
-            font-size: 3rem;
-            color: #b22222;
-        }
-
-        .hero p {
-            font-size: 1.2rem;
-            color: #555;
-            max-width: 700px;
-            margin: auto;
-        }
-
-        .button {
-            display: inline-block;
-            margin-top: 30px;
-            padding: 15px 30px;
-            background-color: #b22222;
-            color: white;
-            text-decoration: none;
-            border-radius: 5px;
-        }
-
-        .features {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            padding: 60px 20px;
-            flex-wrap: wrap;
-        }
-
-        .card {
-            background-color: white;
-            width: 280px;
-            padding: 25px;
-            border-radius: 10px;
-            box-shadow: 0px 2px 10px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-
-        footer {
-            text-align: center;
-            padding: 25px;
-            background-color: #222;
-            color: white;
-        }
-    </style>
-</head>
-
-<body>
-
-<nav>
-    <h2>🍕 Pizza Paradise</h2>
-
-    <div>
-        <a href="/">Home</a>
-        <a href="/menu/">Menu</a>
-
-        {% if user.is_authenticated %}
-            <a href="/cart/">Cart</a>
-
-            <form method="post"
-                  action="{% url 'logout' %}"
-                  style="display:inline;">
-                {% csrf_token %}
-                <button type="submit">
-                    Logout
-                </button>
-            </form>
-        {% else %}
-            <a href="{% url 'login' %}">Login</a>
-            <a href="{% url 'register' %}">Register</a>
-        {% endif %}
-    </div>
-</nav>
-
-<section class="hero">
-
+<div class="card">
     {% if user.is_authenticated %}
-        <h1>Welcome back, {{ user.first_name }}!</h1>
+        <h1>Welcome back, {{ user.first_name|default:user.username }}!</h1>
+        <p>Ready to order your favorite pizza?</p>
     {% else %}
         <h1>Fresh Pizza Delivered Fast</h1>
+        <p>Order delicious handcrafted pizzas online.</p>
     {% endif %}
 
-    <p>
-        Order delicious handcrafted pizzas online.
-        Fresh ingredients, fast delivery,
-        and unbeatable taste.
-    </p>
+    <a class="button" href="/menu/">View Menu</a>
+</div>
 
-    <a href="/menu/" class="button">
-        View Menu
-    </a>
-
-</section>
-
-<section class="features">
-
-    <div class="card">
-        <h3>🍕 Fresh Ingredients</h3>
-        <p>
-            Every pizza is made using high-quality,
-            locally sourced ingredients.
-        </p>
-    </div>
-
-    <div class="card">
-        <h3>🚚 Fast Delivery</h3>
-        <p>
-            Hot pizzas delivered directly
-            to your door.
-        </p>
-    </div>
-
-    <div class="card">
-        <h3>⭐ Customer Favorites</h3>
-        <p>
-            Choose from our most popular pizzas
-            or create your own masterpiece.
-        </p>
-    </div>
-
-</section>
-
-<footer>
-    © 2026 Pizza Paradise
-</footer>
-
-</body>
-</html>
+{% endblock %}
