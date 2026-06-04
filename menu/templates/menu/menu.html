@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block title %}
+Menu
+{% endblock %}
+
+{% block content %}
+
+<h1>🍕 Pizza Menu</h1>
+
+{% for pizza in pizzas %}
+
+<div class="card" style="margin-bottom:20px;">
+
+    <h2>{{ pizza.name }}</h2>
+
+    <p>{{ pizza.description }}</p>
+
+    <h4>Sizes</h4>
+
+    <ul>
+        {% for size in sizes %}
+            <li>
+                {{ size.name }}
+                - ${{ size.base_price }}
+                (Extra toppings ${{ size.topping_price }})
+            </li>
+        {% endfor %}
+    </ul>
+
+    <h4>Available Toppings</h4>
+
+    <ul>
+        {% for topping in pizza.available_toppings.all %}
+            <li>{{ topping.name }}</li>
+        {% empty %}
+            <li>No toppings available</li>
+        {% endfor %}
+    </ul>
+
+</div>
+
+{% endfor %}
+
+<h1>🥤 Drinks</h1>
+
+{% for drink in drinks %}
+
+<div class="card" style="margin-bottom:20px;">
+
+    <h3>{{ drink.name }}</h3>
+
+    <p>{{ drink.size }}</p>
+
+    <p>${{ drink.price }}</p>
+
+</div>
+
+{% endfor %}
+
+{% endblock %}
